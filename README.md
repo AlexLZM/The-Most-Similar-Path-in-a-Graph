@@ -63,7 +63,9 @@ Each edge of the new graph is corresponding to a edge from last node of current 
 
 The edge is directed and weighted as 0 or 1, corresponding to the new node is same as the node on targetpath on same position or not.
 
-So we can find the shortest path with Dijkstra, which is a greedy algorithm. We will always choose next path with less edit distance.
+So we can find the shortest path with greedy algorithm. This new graph is a weighted DAG with no cycle a.k.a n-nary tree. We will always choose next path with less edit distance.
+
+This algorithm is like Dijkstra but without relaxation because their is no cycle.
 
 Because the weight is either 0 or 1. We can use a deque rather than a heap to achieve O(1) push and pop operation.
 
@@ -71,7 +73,7 @@ What we need to do is just appendleft when weight is 0 and append when weight is
 
 The algorithm ends when we got first path with lenght equal to target path.
 
-To avoid redundancy, for paths of length k, a node should not be considered as next node only once, because the only the last node of the path is useful for choose next node.
+To avoid redundancy, we use DP here, for paths of length k, a node should be considered as next node only once, because the only the last node of the path is useful for choose next node. 
 
 ### Time complexty: 
 
